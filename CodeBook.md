@@ -185,18 +185,32 @@ To read more about Jerk, see its
 The final data set has two qualitative variables and 66 quantitative variables. 
 The two qualitative variables are the first two columns.  Each variable is 
 defined in the table below.  Time-domain measurements are just listed as the 
-measurement. Frequency-domain measurements have "Frequency_" prepended to the 
+measurement. Frequency-domain measurements have "frequency_" prepended to the 
 name.
 
 Since all measurements in the final data set represent a mean, it would be
 redundant to prepend `Mean_of_` to every name.  Thus, each quantitative column
 name indicates which measurement it is the mean of.
 
+The table is roughly broken up into nine sections:
+
+1. qualitative variables (2)
+2. 3D measurements (15) -- mean of *mean*
+3. Vector magnitudes of the 3D measurements (5)-- mean of *mean*
+4. FFT of 3D measurements (9) -- mean of *mean*
+5. Vector magnitude of FFT of 3D measurements (4) -- mean of *mean*
+6. 3D measurements (15) -- mean of *standard deviation*
+7. vector magnitude of the 3D measurements (5) -- mean of *standard deviation*
+8. FFT of 3D measurements (9) -- mean of *standard deviation*
+9. vector magnitude of FFT of 3D measurements (4) -- mean of *standard deviation*
+
+Here are all the variables:
+
 Column                                          | Column contents
 ----------------------------------------------- | ------------------------------------------------------------------------------------------
 subjectId                                       | The subject ID, an integer from 1 to 30
 activityName                                    | The name of the activity the subject was doing when the measurements in this row were made
------------------------------------------------ | ------------------------------------------------------------------------------------------
+----------------------------------------------- | -----------------------------------------------
 Body_Acceleration_mean_X                        | mean acceleration of the body along the X axis
 Body_Acceleration_mean_Y                        | mean acceleration of the body along the Y axis
 Body_Acceleration_mean_Z                        | mean acceleration of the body along the Z axis
@@ -212,13 +226,13 @@ Body_Gyroscopic_mean_Z                          | mean Z axis component of the a
 Body_Gyroscopic_Jerk_mean_X                     | mean jerk (time derivative) of the X axis component of the angular velocity of the body
 Body_Gyroscopic_Jerk_mean_Y                     | mean jerk (time derivative) of the Y axis component of the angular velocity of the body
 Body_Gyroscopic_Jerk_mean_Z                     | mean jerk (time derivative) of the Z axis component of the angular velocity of the body
------------------------------------------------ | ------------------------------------------------------------------------------------------
+----------------------------------------------- | -----------------------------------------------
 Body_Acceleration_Magnitude_mean                | mean magnitude of the 3D vector of body acceleration
 Gravity_Acceleration_Magnitude_mean             | mean magnitude of the 3D vector of the acceleration of gravity
 Body_Acceleration_Jerk_Magnitude_mean           | mean magnitude of the 3D vector of the body Jerk measurement
 Body_Gyroscopic_Magnitude_mean                  | mean magnitude of the 3D vector of the body angular velocity
 Body_Gyroscopic_Jerk_Magnitude_mean             | mean magnitude of the 3D vector of time derivative of the body angular velocity
------------------------------------------------ | ------------------------------------------------------------------------------------------
+----------------------------------------------- | -----------------------------------------------
 frequency_Body_Acceleration_mean_X              | mean frequency-domain transform of acceleration of the body along the X axis
 frequency_Body_Acceleration_mean_Y              | mean frequency-domain transform of acceleration of the body along the Y axis
 frequency_Body_Acceleration_mean_Z              | mean frequency-domain transform of acceleration of the body along the Z axis
@@ -228,12 +242,12 @@ frequency_Body_Acceleration_Jerk_mean_Z         | mean frequency-domain transfor
 frequency_Body_Gyroscopic_mean_X                | mean frequency-domain transform of X axis component of the angular velocity of the body
 frequency_Body_Gyroscopic_mean_Y                | mean frequency-domain transform of Y axis component of the angular velocity of the body
 frequency_Body_Gyroscopic_mean_Z                | mean frequency-domain transform of Z axis component of the angular velocity of the body
------------------------------------------------ | ------------------------------------------------------------------------------------------
+----------------------------------------------- | -----------------------------------------------
 frequency_Body_Acceleration_Magnitude_mean      | mean magnitude of the 3D vector of the frequency-domain transform of body acceleration
 frequency_Body_Acceleration_Jerk_Magnitude_mean | mean magnitude of the 3D vector of the frequency-domain transform of body Jerk
 frequency_Body_Gyroscopic_Magnitude_mean        | mean magnitude of the 3D vector of the frequency-domain transform of body angular velocity
 frequency_Body_Gyroscopic_Jerk_Magnitude_mean   | mean magnitude of the 3D vector of the frequency-domain transform of jerk (time derivative) of body angular velocity
------------------------------------------------ | ------------------------------------------------------------------------------------------
+----------------------------------------------- | -----------------------------------------------
 Body_Acceleration_std_X                         | standard deviation of acceleration of the body along the X axis                                           
 Body_Acceleration_std_Y                         | standard deviation of acceleration of the body along the Y axis                                           
 Body_Acceleration_std_Z                         | standard deviation of acceleration of the body along the Z axis                                           
@@ -249,13 +263,13 @@ Body_Gyroscopic_std_Z                           | standard deviation of Z axis c
 Body_Gyroscopic_Jerk_std_X                      | standard deviation of jerk (time derivative) of the X axis component of the angular velocity of the body  
 Body_Gyroscopic_Jerk_std_Y                      | standard deviation of jerk (time derivative) of the Y axis component of the angular velocity of the body  
 Body_Gyroscopic_Jerk_std_Z                      | standard deviation of jerk (time derivative) of the Z axis component of the angular velocity of the body  
------------------------------------------------ | ------------------------------------------------------------------------------------------
+----------------------------------------------- | -----------------------------------------------
 Body_Acceleration_Magnitude_std                 | standard deviation of the magnitude of the 3D vector of body acceleration                           
 Gravity_Acceleration_Magnitude_std              | standard deviation of the magnitude of the 3D vector of the acceleration of gravity                 
 Body_Acceleration_Jerk_Magnitude_std            | standard deviation of the magnitude of the 3D vector of the body Jerk measurement                   
 Body_Gyroscopic_Magnitude_std                   | standard deviation of the magnitude of the 3D vector of the body angular velocity                   
 Body_Gyroscopic_Jerk_Magnitude_std              | standard deviation of the magnitude of the 3D vector of time derivative of the body angular velocity
------------------------------------------------ | ------------------------------------------------------------------------------------------
+----------------------------------------------- | -----------------------------------------------
 frequency_Body_Acceleration_std_X               | standard deviation of the frequency-domain transform of acceleration of the body along the X axis                            
 frequency_Body_Acceleration_std_Y               | standard deviation of the frequency-domain transform of acceleration of the body along the Y axis                            
 frequency_Body_Acceleration_std_Z               | standard deviation of the frequency-domain transform of acceleration of the body along the Z axis                            
@@ -265,9 +279,8 @@ frequency_Body_Acceleration_Jerk_std_Z          | standard deviation of the freq
 frequency_Body_Gyroscopic_std_X                 | standard deviation of the frequency-domain transform of X axis component of the angular velocity of the body                 
 frequency_Body_Gyroscopic_std_Y                 | standard deviation of the frequency-domain transform of Y axis component of the angular velocity of the body                 
 frequency_Body_Gyroscopic_std_Z                 | standard deviation of the frequency-domain transform of Z axis component of the angular velocity of the body                 
------------------------------------------------ | ------------------------------------------------------------------------------------------
+----------------------------------------------- | -----------------------------------------------
 frequency_Body_Acceleration_Magnitude_std       | standard deviation of the magnitude of the 3D vector of the frequency-domain transform of body acceleration      
 frequency_Body_Acceleration_Jerk_Magnitude_std  | standard deviation of the magnitude of the 3D vector of the frequency-domain transform of body Jerk              
 frequency_Body_Gyroscopic_Magnitude_std         | standard deviation of the magnitude of the 3D vector of the frequency-domain transform of body angular velocity  
 frequency_Body_Gyroscopic_Jerk_Magnitude_std    | standard deviation of the magnitude of the 3D vector of the frequency-domain transform of jerk (time derivative) of body angular velocity
------------------------------------------------ | ------------------------------------------------------------------------------------------
