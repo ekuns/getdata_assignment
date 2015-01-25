@@ -16,13 +16,15 @@ for this analysis.
 
 See the [Code Book](./CodeBook.md) for the full details of the data set, where
 it came from, what variables it contains, and the processing that was done.
+The Code Book also documents what to find in the data set that is the final
+output of this analysis.
 
 ## Assumptions of the processing script
 
 The processing script `run_analysis.R` assumes that the data set has already
 been manually downloaded (from the URL listed below).  It further assumes that 
-the data set was unzipped into the folder `UCI HAR Dataset` which R can find
-in its current working directory.
+the data set has been unzipped into the folder `UCI HAR Dataset` which R can
+find in its current working directory.
 
 As mentioned in the [Code Book](./CodeBook.md), you can download a copy of the
 original data set from this URL:
@@ -30,15 +32,15 @@ original data set from this URL:
 https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip 
 
 NOTE:  The processing script cleans its environment before it runs, to guarantee
-no interference with previous environment contents.  It uses this command to do
-this:
+that there is no interference caused by previous contents of the global
+environment.  It uses this command to do so:
 
 ```R
 rm(list = ls())
 ```
 
-If you do not want the environment to be emptied, you can comment out this line
-before running the script.
+If you do not want the global environment to be emptied, you can comment out
+that line before running the script.
 
 The processing script also requires that the library `dplyr` is installed
 locally.  It will load it with the `library` function, so it does not have to
@@ -56,9 +58,9 @@ Windows 7 64-bit environment. Dplyr version 0.4.1 was used.
 
 The processing script `run_analysis.R` requires no arguments.  Since it clears
 its environment before it runs, it does not depend on what was previously
-loaded in the environment.  There are no external R scripts.  All of the
-processing code is in one script.  Therefore, you can run the processing script
-with this command:
+loaded in the environment.  There are no additional or external R scripts.  All
+of the processing code is in one script.  Therefore, you can run the processing
+script with this command:
 
 ```R
 source("run_analysis.R")
@@ -80,11 +82,11 @@ All of the code is in a single script, for simplicity.  The important sections
 of code are labeled with block comments to make it easy to identify what is
 being done at each step.  Only one function is defined -- the function that
 verifies that the analysis was consistent and accurate.  All other processing
-was done inline in the script.
+is done inline in the script.
 
-## Why data is tidy
+## Why the final data is tidy
 
-FOr this exercise, either the "narrow" or "wide" form of tidy data would be
+For this exercise, either the "narrow" or "wide" form of tidy data would be
 valid.  I opted to use the wide form of tidy data, as it is more convenient.
 Each row represents all computed averages for a single observation, that is,
 the summarized result of a single set of measurements for a single subject and
@@ -95,9 +97,10 @@ one kind of "observational unit" so there is no need for a second table
 
 ## How to read the data file
 
-You can load and view this data set into a data.frame in R using this code:
+You can load and view this data set into a data.frame in R using this code,
+assuming that the file `summarized_data.txt` is in the current directory:
 
 ```R
-data <- read.table(file_path, header = TRUE) 
-View(data)
+summarized_data <- read.table("summarized_data.txt", header = TRUE) 
+View(summarized_data)
 ```

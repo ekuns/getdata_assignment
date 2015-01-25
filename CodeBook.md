@@ -8,6 +8,12 @@
   Transform rapidly.  A Fourier transform will help identify repetitive motion,
   for example, the up-and-down bouncing that occurs while walking at a 
   constant speed.
+* Time-domain -- any ordinary measurement of a variable across time.  See
+  [Wikipedia](http://en.wikipedia.org/wiki/Time_domain)
+* Frequency-domain -- The output of an FFT of a time-domain variable.  If there
+  is periodic motion, the frequency of that periodic motion will be visible in
+  the frequency-domain variables.  See
+  [Wikipedia](http://en.wikipedia.org/wiki/Frequency_domain)
 
 ## Original Source of Data
 
@@ -45,57 +51,72 @@ https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Datas
 
 This analysis used the following data files from the origin data set:
 
+#### Metadata
+
 * `UCI HAR Dataset/activity_labels.txt` -- relates the activity index values 1-6
     to the activity names, such as "Walking" or "Standing".  The activity index
     values are used in `y_test.txt` and `y_train.txt`.
 * `UCI HAR Dataset/features.txt` -- provides the column name for each of the 561
     columns in `X_test.txt` and `X_train.txt`.  The meaning of the column names
     is defined in `features_info.txt` as mentioned above.
+
+#### Test data set
+
 * `UCI HAR Dataset/test/X_test.txt` -- The test data set
 * `UCI HAR Dataset/test/y_test.txt` -- the activity index for each row of the test data set
 * `UCI HAR Dataset/test/subject_test.txt` -- the subject index for each row of the test data set
+
+#### Training data set
+
 * `UCI HAR Dataset/train/X_train.txt` -- The training data set
 * `UCI HAR Dataset/train/y_train.txt` -- the activity index for each row of the training data set
 * `UCI HAR Dataset/train/subject_train.txt` -- the subject index for each row of the training data set
+
+#### Raw data (not used)
 
 The raw data is found in the "Inertial Signals" folders:
 
 * `UCI HAR Dataset/test/Inertial Signals/*`
 * `UCI HAR Dataset/train/Inertial Signals/*`
 
-The raw data is not required for this analsysis.  The `run_analysis.R` script
+The raw data is not required for this analysis.  The `run_analysis.R` script
 does not load or reference any file from those folders.
+
+## Origin Data Note
 
 Note that the origin data have been normalized and bounded to [-1, 1].  Due to
 this normalization, the variables are unitless.
 
 ## Transformations
 
-The following transformations were done on the origin data set:
+For this analysis, the following transformations were done on the origin data
+set:
 
-* The column labels were improved to be much clearer what is being measured
-  (see below for details)
-* The training and test data sets were merged into a single data set
-* Data from the separate subject ID and activity ID files was merged into the data set
+* The column labels were improved to be much clearer what is being measured.
+  All the new column labels are defined in a table at the end of this Code Book.
+* The training and test data sets were merged into a single data set.
+* Data from the separate subject ID and activity ID files was merged into the 
+  data set.
 * Most of the columns were discarded, keeping only the columns for subject ID,
-  activity ID, and any measurement representing a mean or standard deviation.
+  activity ID, and any variable that represents a mean or standard deviation
+  of a measurement.  (This does not include "MeanFreq".  See below.)
 * The activity ID was replaced by a factor containing the activity name
 * On this reduced data set, each variable was averaged across all instances
-  for the same subject and activity.  Yes, this means the measurements in the
+  for the same subject and activity.  Yes, this means the variables in the
   final data set represent the mean of means and the mean of standard
   deviations.
 * The final summarized data set was written to a file
 
 ## Measurements included in the final data set
 
-All measurements are ultimately derived from two instruments, an accelerometer
+All variables are ultimately derived from two instruments, an accelerometer
 and a gyroscope.  Each measures three different values, an X, Y, and Z axis
 value.  The original experimenters expanded these six measurements into 33
-measurements, 20 of them computed from the raw data and the other 13 derived
-from a FFT of some of the data.
+variables, 20 of them computed from the raw data and the other 13 derived
+from an FFT of some of the first twenty variables.
 
-*Note:* The columns containing "MeanFreq" are not included in this analysis.  The
-requirement is: "mean and standard deviation for each measurement," not 
+*Note:* The columns containing "MeanFreq" are not included in this analysis. 
+The requirement is: "mean and standard deviation for each measurement," and not 
 "mean and standard deviation and weighted mean frequency of each measurement."
 Looking at `features_info.txt`, it is clear that mean frequency is another
 variable measured from the signal, along with the mean, standard deviation,
@@ -104,7 +125,7 @@ two of those variables, the mean and the standard deviation.
 
 ### Time-domain measurements
 
-The first 20 measurements were computed by computing four values for each of
+The first 20 measurements were created by computing four values for each of
 the following:
 
  Measurement          | Time derivative of measurement
