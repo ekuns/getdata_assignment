@@ -100,12 +100,14 @@ set:
 * Most of the columns were discarded, keeping only the columns for subject ID,
   activity ID, and any variable that represents a mean or standard deviation
   of a measurement.  (This does not include "MeanFreq".  See below.)
-* The activity ID was replaced by a factor containing the activity name
+* The integer activity ID column was replaced by a factor containing the 
+  activity name
 * On this reduced data set, each variable was averaged across all instances
   for the same subject and activity.  Yes, this means the variables in the
   final data set represent the mean of means and the mean of standard
-  deviations.
-* The final summarized data set was written to a file
+  deviations.  This data set is the final output of this analysis.
+* The final summarized data set was written to a file:
+  `summarized_data.txt`
 
 ## Measurements included in the final data set
 
@@ -122,6 +124,15 @@ Looking at `features_info.txt`, it is clear that mean frequency is another
 variable measured from the signal, along with the mean, standard deviation,
 min, max, energy measure, correlation, and so on.  We were only asked to keep
 two of those variables, the mean and the standard deviation.
+
+If the "MeanFreq" columns had been included, it would have expanded this data
+set by only 13 (not 33) columns, representing the mean weighted frequency of a
+subset of the 33 variables that are included.
+
+Thirty-three variables times two (once each for mean and standard deviation)
+results in 66 quantitative variables.  Since the subject ID and activity name
+are essential parts of each measurement, the total number of variables (i.e.,
+columns) in the final data set is 68, two qualitative and 66 quantitative.
 
 ### Time-domain measurements
 
@@ -168,14 +179,6 @@ for rotational motion.  Jerk represents the rate of change of acceleration.
 
 To read more about Jerk, see its
 [Wikipedia Entry](http://en.wikipedia.org/wiki/Jerk_%28physics%29)
-
-### Total number of columns
-
-A total of thirty-three variables is kept in the final data set.  The mean
-and the standard deviation for each is kept.  That results in 66 variables.
-Since the subject ID and activity name are essential parts of each measurement,
-the total number of variables in the final data set is 68, two qualitative and
-66 quantitative.
 
 ## Description of all variables in the final data set
 
