@@ -1,0 +1,7 @@
+.Rproj.user
+.Rhistory
+.RData
+UCI HAR Dataset/**
+summarized_data.txt
+*.html
+*.zip
